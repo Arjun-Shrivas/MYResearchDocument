@@ -1,0 +1,68 @@
+Note in dockerfile leftside give alwaye <source path> and right side give <destination path> 
+==========dockerfile=======================
+FROM snakepacker/python:3.7   # pull images from dockerhub if not present in local
+
+COPY requirement.txt /temp/app  # copy from docker deamon any file
+sytex:-<copy_location_with_file_name>  <past_location>
+note: in container reuire.txt file name will be "app" because "app" not present in container 
+
+docker build -t <image_name> .  # from image as per requied user with help of dockerfile
+docker run -it --name <container_name> <image_name>  /bin/bash
+
+docker ps -a  # show active and inactive ps
+docker ps -l
+docker start <containerId|| name> # start without going inside docker
+docker stop <ContainerId || name>
+ 
+CTRL-p CTRL-q # exit in running container
+docker exec -it 07b271437533 bash # enter in running container
+
+
+docker container ls -a  # check hidden container running status
+docker container ls -aq # get all running container id
+docker container ls -aq > conatinerId
+docker container stop -r ContainerId
+docker container stop $(docker container ls -aq)
+docker container rm $(docker container ls -aq)
+docker rmi -f  $(docker images)
+docker ps --all
+
+
+docker   system prune -af --volumes
+
+docker volume ls
+
+docker system prune #Remove All Unused Docker Objects
+-a To include stopped containers and unused images
+-f Bypasses confirmation dialog
+--volumes Removes all unused volumes
+docker image prune
+-q or --quiet (display only the numeric ID)
+docker volume prune
+docker network prune
+
+
+docker commit -m "What you did to the image" -a "Author Name"
+container_id repository/new_image_name
+ex:- docker commit -m "added Node.js" -a "sammy" d9b100f2f636 sammy/ubuntu-
+nodejs
+
+save running and own create image
+docker commit --change='CMD ["service apache2 start"]' -c "EXPOSE 80" 896f9409d0b5  testapache2:apache2
+
+pragma solidity >=0.7.0 <0.9.0;
+
+contract Greetings {
+    string message = "I'm Ready!";
+
+
+    function setGreetings(string memory mess) public {
+        message = mess;
+    }
+    
+    
+
+    function getGreetings() public view returns (string memory){
+        return message;
+    }
+}

@@ -1,0 +1,19 @@
+Press y|Y for Yes, any other key for No: y
+Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG: 0
+Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) : y
+Remove anonymous users? (Press y|Y for Yes, any other key for No) : y
+Disallow root login remotely? (Press y|Y for Yes, any other key for No) : n
+Remove test database and access to it? (Press y|Y for Yes, any other key for No) : n
+Reload privilege tables now? (Press y|Y for Yes, any other key for No) : y
+
+
+open mysql :- sudo mysql
+select user,authentication_string, plugin from mysql.user;
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'root' ;
+ERROR 1819 (HY000): Your password does not satisfy the current policy requirements
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'passwd123'
+succes
+
+FLUSH PRIVILEGES;
+select user,authentication_string, plugin from mysql.user;

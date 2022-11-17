@@ -1,0 +1,67 @@
+docker pull ahanaio/prestodb-sandbox
+docker pull johandry/presto
+
+docker run --name postress -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret -d postgres 
+psql -h localhost -p 5432 -U root
+
+
+
+docker run -p 8090:8090 --name presto ahanaio/prestodb-sandbox
+
+docker run -p 8080:8080 --name presto ahanaio/prestodb-sandbox -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret
+
+docker run -p 8080:8080 --name presto presto/postgres-mysql
+
+docker exec -it presto  presto-cli
+show catalogs;
+show schemas in jmx;
+docker exec -it presto  presto-cli  --catalog tpcds --schema sf10
+use tpcds.sf10;
+
+
+
+docker exec -it f2f35521e4fd  bash
+
+sudo apt install postgresql-client-12
+
+
+mypass of mysql -Password@123
+
+service mysql restart
+
+
+// to change password
+sudo mysql_secure_installation
+
+mysql -u root -p
+
+create table mysql.countrydata.members(full_names varchar(50),gender varchar(50), physical_address varchar(50), contact_number int);
+INSERT INTO mysql.countrydata.members (full_names,gender,physical_address,contact_number) VALUES ('Leonard Hofstadter','Male','Woodcrest',0845738767);
+
+
+//without password just press Enter
+//workbrach
+
+sudo snap connect mysql-workbench-community:password-manager-service :password-manager-service
+
+Postgres :-
+docker run --name some-postgres -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret -d postgres
+
+psql -h localhost -p 5432 -U root
+
+
+
+create table users (
+    userId  int,
+    userName varchar(255),
+    userAddress varchar(255),
+    userEmail varchar(255),
+    userPassword varchar(255),
+    CountryName varchar (255)
+);
+
+insert into users (userId,userName, userAddress, userEmail, userPassword, CountryName)
+VALUES (1,'Arjun', 'MP', 'arjun@gmail.com', '123', 'India'),
+(2,'Admin', 'UP', 'admin@gmail.com', '123', 'India');
+
+

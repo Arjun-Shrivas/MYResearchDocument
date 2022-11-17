@@ -1,0 +1,186 @@
+spark modes :- ctrl+D :quit
+
+./bin/spark-shell --master local[*]
+./bin/spark-shell --master local[2]
+
+slave need to master port Disrtibuted mode
+.sbin/start-mster.sh
+./sbin/start-slave.sh spark://localhost:7077
+./bin/spark-shell --master yarn
+
+map() # one incoming and one outgoing
+filtermap() # one incoming and many outgoing
+ 
+connection with file:-
+sc.textFile("/tmp/file-name/")  # fetch file form hdfs file system becouse localy it's set
+sc.textFile("file:///<path-of-file>)  # for local file use
+
+val myTextFile = sc.textFile("file:///tmp/LICENSE_spark")
+val myword = myTextFile.flatMap(line => line.split(" "))
+val wordWithoutSpaces = myword.filter(word => word.trim().length() > 0)
+wordWithoutSpaces.foreach(println)
+
+
+intersection # used for checking common line and wordfrom two file 
+subsract # 
+file1.subract(file2).foreach(println)  # A-B 
+val collection = file1.collect # return array
+
+convert Arrays into RDD
+
+val arr1 = Arrays(1,2,3,4,5)
+val arrRdd = sc.parallelize(arr1);
+
+val arr2 = Arrays(1,2,3,4,5)
+val arrRdd2 = sc.parallelize(arr1);
+
+
+val add = arrRdd.reduce ( (x,y) => x+y)
+
+val addtion = arrRdd
+
+._1 == first element of tuple
+
+
+
+
+
+val maydata = spark.read.foramt("csv").option("inferSchema","true").option("header","true").load("sample/Bank_fill.csv")
+
+
+mtdata.printSchema()
+
+mydata.show()
+mydata.show(50)
+
+mydata.select($"age",$"job",$"y") # for create datafram with particular column
+
+mydataframe.count.toDouble()  # to count total number of data
+
+val suscount = mydata.filter($"y"=== "yes").count.toDouble
+
+val susccesrate = suscount/totcount * 100
+
+mydata.createOrReplaceTempView("bankdata")
+ 
+spark.sql("select * from bankdata where age > 75").show()
+
+val res = spark.sql("select * from bankdata where age > 75").show()
+
+res.write.save("mynewdf")
+
+res.write.format("json").save("mynewdf")
+
+
+val df = spark.sqlContext.read.format("csv").option("header", "true").load("/home/arjuna/sample_related_entities.csv")
+df.show(10)
+df.describe().show()
+df.describe("parent_company_id").show()
+
+
+
+df.agg(countDistinct("parent_company_id"), countDistinct("company_id")).show()
+
+
+#check in columns have any null value or not ?
+df.filter("parent_company_domain is null").show
+
+
+
+# length of columns
+df.withColumn("len_col",length(col("parent_company_id"))).withColumn("trim_len_col",length(trim(col("parent_company_id")))).show()
+
+
+
+# total null values
+val agg_df = df.select(df.columns.map(c => sum(col(c).isNull.cast("int")).alias(c)): _*).toDF
+val total_null = agg_df.withColumn("sums", df.colums.reduce(_ + _))
+total_null.first()(5)
+
+
+# create tabel from datafram 
+df.createOrReplaceTempView("people")
+
+#total record in dataframe 
+ df.count()
+
+
+// To clean all rows with null values
+      val dfWithoutNull = df.na.drop()
+      dfWithoutNull.show()
+
+// To fill null values with another value
+      val df1 = df.na.fill(-1)
+      df1.show()
+
+// to get new dataframes with the null values rows
+      val nullValues = df.filter(row => row.anyNull == true)
+      nullValues.show()
+      
+// find count number of null values in paritculer column 
+print(df.filter(col("name").isNull || col("name") === "").count())
+
+
+//
+ val stats = origDF.select(origDF.dtypes.flatMap {
+      case (c, "StringType") =>
+        Seq(count(c) as s"valid_${c}", count("*") - count(c) as s"invalid_${c}")
+      case (c, t) if Seq("TimestampType", "DateType") contains t =>
+        Seq(min(c), max(c))
+      case (c, t) if (Seq("FloatType", "DoubleType", "IntegerType") contains t) || t.startsWith("DecimalType") =>
+        Seq(min(c), max(c), avg(c), stddev(c))
+      case _ => Seq.empty[Column]
+    }: _*)
+    
+    println(stats)
+
+
+-x-x-x-x--x-x-x-x--x-x-x-x--x-x-x--x-x-x-x-x--x-x-x-x--x-x-x-x-x--x-x-x-x-x-x--x-x final-work -x-x-x-x-x--x-x-x-x--x-x-x-x-x--x-x-x-x-x-x-x-x--x-x-x
+
+
+val df = spark.sqlContext.read.format("csv").option("header", "true").load("/home/arjuna/sample_related_entities.csv")
+
+print("total record ", df.count())
+print(" total null values ",  df.filter(row => row.anyNull == true).count())
+print("describe null dataframe")
+val df_null = df.select(df.columns.map(c => sum(col(c).isNull.cast("int")).alias(c)): _*).toDF.show()
+df_null.show()
+print("total root ", df.select("parent_company_domain").count())
+print("total root domain null, df.filter("parent_company_domain is null").count())
+
+https://github.com/securityscorecard/ssc-custom-views-data-load/blob/ENTITY_RELATIONS_PRE_CHECKS/spark/src/main/scala/io/ssc/attribution/orgviews/spark/gateway/DnBDataLoadEngagementGateway.scala
+ 
+ 
+ 
+ -x-x-x-x-x-x--x-x-x-x-
+ 
+    val input = CSVExtractor(sparkSession, "/home/arjuna/sample_related_entities.csv")
+    val alldata2 = CSVExtractor(sparkSession, "/home/arjuna/alldata.csv")
+    println("total record ", input.count())
+    println("describe null dataframe")
+    val df_null = input.select(input.columns.map(c => sum(col(c).isNull.cast("int")).alias(c)): _*)
+      .withColumn("Total NUll",$"parent_company_id" + $"parent_company_domain"+ $"company_id" + $"company_domain"+ $"source")
+      .toDF()
+    df_null.show()
+
+    println("total root ", allDataDF.select("parent_company_domain").count())
+    println("total root domain null", allDataDF.filter("parent_company_domain is null").count())
+    
+    
+    
+     val nullDomainRootDF = allDataDF
+      .filter((col("parent_company_domain").isNull && col("company_domain").isNull && size(col("company_domain")) > 0))
+      
+  
+  prob:- 1      
+     parent_company_name		domain_company
+        microsoft          		size(col([gmail, null ,gitlab]))>0
+      					id:-        1      2      3
+      if is null	and 	size grather then 0      
+      	
+      
+      
+
+
+
+

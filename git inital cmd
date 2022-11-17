@@ -1,0 +1,109 @@
+when add new project inside github
+Arjun-Shrivas token  :- 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
+latest token : - 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
+git init 
+git status
+git add . 
+git reset <file name> "for unstage file from stagig area"
+
+git Auth cmd :- 
+git remote add origin https://github.com/delixus-arjun/Moralis-NFTMarketPlace.git
+git config --local user.email "arjun.shrivas@delixus.com"
+git config --local user.name "delixus-arjun"
+git remote -v 
+
+
+global :-  git config --global user.email "nive54@gmail.com"
+           git config --global user.name "Nivetha"
+
+After success Atuh :- 
+
+git commit -m "first init commit"
+git push origin -u master
+git push --set-upstream origin main
+
+only for main branch
+
+git push -f origin main  "only for main branch"
+ git config credential.username "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"
+
+change branch
+
+git checkout -b <branchname>
+
+
+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 acess token delixus-arjun
+
+
+ =========================== solution of ERROR 403 ==================================
+ remote: Permission to delixus-arjun/Moralis-NFTMarketPlace.git denied to Arjun-Shrivas.
+fatal: unable to access 'https://github.com/delixus-arjun/Moralis-NFTMarketPlace.git/': The requested URL returned error: 403
+
+This also works for personal access tokens using this format: git remote add origin https://[USERNAME]:[NEW TOKEN]@github.com/[USERNAME]/[REPO].git 
+
+
+https://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@github.com/delixus-arjun/Moralis-NFTMarketPlace.git   
+
+
+https://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@github.com/DLXSMarks/bcs-dex-ui.git
+
+git remote add access  https://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@github.com/delixus-
+arjun/Moralis-NFTMarketPlace.git   
+
+git push -f access
+
+
+https://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github.com/delixus-arjun/Web3wallet.git
+
+
+
+g.1- or create a new repository on the command line 
+
+echo "# herbleaf" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/Arjun-Shrivas/NFT-MarkePlace.git
+git push -u origin main
+
+
+.2- …or push an existing repository from the command line
+git remote add origin https://github.com/Arjun-Shrivas/herbleaf.git
+git branch -M main
+git push -u origin main
+
+
+herbleaf token: - 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
+
+
+error :-  fatal: unable to access 'https://github.com/Arjun-Shrivas/herbleaf.git/': The requested URL returned error: 403
+solve by generate again token with permission from developer token
+
+
+
+
+======x=x==x=x=x=x=x=x=x=x==x=x=x=x=x=x=x==x=x=x=x=x=x=x==x=x=x=x=x=x=x=x==x=x=x=x=x=x=x==x=x=x=x=x==x=x=x=x=x=
+
+git status
+
+git add . or <specific file name>
+
+git commit -m "msg"
+
+git log 
+Enter Q to exit from log details
+
+git show <log id>
+
+git diff
+
+
+git checkout
+
+
+git push --set-upstream origin main
+
+
+create new branch :- git checkout -b <branch-name>
+

@@ -1,0 +1,32 @@
+export PYENV_GIT_TAG=v2.2.5
+curl https://pyenv.run | bash
+
+
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
+
+
+pyenv install 3.7.0
+
+pyenv global 3.7.0
+pyenv local 3.7.0
+
+
+pyenv virtualenv 3.7.0 securify
+
+
+which python
+ls /usr/bin/python*
+
+installation :- 
+ 
+ 
+ sudo apt update
+ sudo add-apt-repository ppa:deadsnakes/ppa
+ sudo apt install python3.7
+ls /usr/bin/python*
+/usr/bin/python3.7 --version
+sudo apt-get install python3.7-venv
+
+

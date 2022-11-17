@@ -1,0 +1,76 @@
+First, install the dependencies necessary to build Git on your Ubuntu system:
+
+sudo apt update
+sudo apt install make libssl-dev libghc-zlib-dev libcurl4-gnutls-dev libexpat1-dev gettext unzip
+apt-get install -y git
+
+git config --global user.name Arjun-Shrivas
+git config --global user.email arjunshrivas1997@gmail.com
+git config --list
+
+git init
+
+==================================******============================
+git status
+On branch master
+
+No commits yet
+
+nothing to commit (create/copy files and use "git add" to track)
+============================*************==========================
+
+touch index.html
+git add index.html
+
+git commit
+git add -A
+
+git commit -m " msg " 
+
+
+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  token
+
+git config --global --edit
+#to check what is my email Id
+git config --global user.email
+git config --global user.name 
+ 
+#delete file from staginig Area
+git reset calc.py  
+
+#delete All file from staginig Area 
+git reset           
+
+# create new branch
+git branch <name_branch> 
+
+# switch branch  
+git checkout <branch_name> 
+
+git pull origin master
+git push -u origin <branch_name>
+
+git merge <branch name>
+git push origin master
+
+
+
+git status
+
+git checkout  <branch-name>
+
+git log 
+press q
+
+git status
+git diff
+
+git add build.sbt
+git push origin <branch-name>
+user-name: 
+password:
+
+git pull
+
+
+
